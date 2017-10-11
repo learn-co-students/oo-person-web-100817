@@ -52,30 +52,23 @@ class Person
 
 	def take_bath
 		cleanliness = @hygiene
-		cleanliness += 4
-		self.hygiene=(cleanliness)
+		self.hygiene=(cleanliness + 4)
 		"♪ Rub-a-dub just relaxing in the tub ♫"
 	end
 
 	def work_out
 		cleanliness = @hygiene
-		cleanliness -= 3
-		self.hygiene=(cleanliness)
-
+		self.hygiene=(cleanliness -3)
 		happy = @happiness
-		happy += 2
-		self.happiness=(happy)
+		self.happiness=(happy + 2)
 		"♪ another one bites the dust ♫"
 	end
 
 	def call_friend(friend)
 		happy = @happiness
-		happy += 3
-		self.happiness=(happy)
-
+		self.happiness=(happy + 3)
 		friends_happiness = friend.happiness
-		friends_happiness += 3
-		friend.happiness = friends_happiness
+		friend.happiness=(friends_happiness + 3)
 		"Hi #{friend.name}! It's #{self.name}. How are you?"
 	end
 
@@ -83,17 +76,18 @@ class Person
 		if topic == "politics"
 			ph = person.happiness
 			h = self.happiness
-			person.happiness = ph - 2
-			self.happiness = h - 2
+			person.happiness=(ph - 2)
+			self.happiness=(h - 2)
 			"blah blah partisan blah lobbyist"
 		elsif topic == "weather"
 			ph = person.happiness
 			h = self.happiness
-			person.happiness = ph + 1
-			self.happiness = h + 1
+			person.happiness=(ph + 1)
+			self.happiness=(h + 1)
 			"blah blah sun blah rain"
 		else
 			"blah blah blah blah blah"
 		end
 	end
+
 end
