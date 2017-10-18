@@ -1,6 +1,8 @@
+require 'pry'
 class Person
-	attr_accessor :bank_account
-	attr_reader :name, :happiness, :hygiene
+
+	attr_accessor :bank_account, :happiness, :hygiene
+	attr_reader :name
 
 	def initialize(name)
 		@name = name
@@ -10,7 +12,7 @@ class Person
 	end
 
 	def happiness=(num)
-		if num > 10
+		if num  > 10
 			@happiness = 10
 		elsif num < 0
 			@happiness = 0
@@ -20,29 +22,20 @@ class Person
 	end
 
 	def hygiene=(num)
-		if num > 10
-			@hygiene = 10
+		if num  > 10
+			num = 10
 		elsif num < 0
-			@hygiene = 0
-		else
-			@hygiene = num
+			num = 0
 		end
+		@hygiene = num
 	end
 
 	def happy?
-		if @happiness > 7
-			true
-		else
-			false
-		end
+		@happiness > 7 ? true : false
 	end
 
 	def clean?
-		if @hygiene > 7
-			true
-		else
-			false
-		end
+		@hygiene > 7? true : false
 	end
 
 	def get_paid(salary)
@@ -52,24 +45,30 @@ class Person
 
 	def take_bath
 		cleanliness = @hygiene
-		self.hygiene=(cleanliness + 4)
+		self.cleaner(4)
 		"♪ Rub-a-dub just relaxing in the tub ♫"
 	end
 
+
 	def work_out
-		cleanliness = @hygiene
-		self.hygiene=(cleanliness -3)
-		happy = @happiness
-		self.happiness=(happy + 2)
+		self.hygiene=(@hygiene - 3)
+		self.happier(2)
 		"♪ another one bites the dust ♫"
 	end
 
-	def call_friend(friend)
-		happy = @happiness
-		self.happiness=(happy + 3)
-		friends_happiness = friend.happiness
-		friend.happiness=(friends_happiness + 3)
-		"Hi #{friend.name}! It's #{self.name}. How are you?"
+	def call_friend(object)
+		self.happier(3)
+		you = object.happiness + 3
+		object.happiness=(you)
+		"Hi #{object.name}! It's #{self.name}. How are you?"
+	end
+
+	def happier(num)
+		self.happiness=(@happiness+num)
+	end
+
+	def cleaner(num)
+		self.hygiene=(@hygiene+num)
 	end
 
 	def start_conversation(person, topic)
@@ -89,5 +88,7 @@ class Person
 			"blah blah blah blah blah"
 		end
 	end
+
+
 
 end
